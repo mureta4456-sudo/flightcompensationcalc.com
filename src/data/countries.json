@@ -1,0 +1,18 @@
+{
+  "Germany": {"statute_years": 3, "currency": "EUR"},
+  "France": {"statute_years": 5, "currency": "EUR"},
+  "United Kingdom": {"statute_years": 6, "currency": "GBP"},
+  "Spain": {"statute_years": 5, "currency": "EUR"},
+  "Italy": {"statute_years": 2, "currency": "EUR"},
+  "Netherlands": {"statute_years": 2, "currency": "EUR"},
+  "Belgium": {"statute_years": 1, "currency": "EUR"},
+  "Poland": {"statute_years": 1, "currency": "EUR"},
+  "Ireland": {"statute_years": 6, "currency": "EUR"},
+  "Austria": {"statute_years": 3, "currency": "EUR"},
+  "Sweden": {"statute_years": 2, "currency": "EUR"},
+  "Greece": {"statute_years": 5, "currency": "EUR"},
+  "Portugal": {"statute_years": 3, "currency": "EUR"},
+  "Denmark": {"statute_years": 3, "currency": "EUR"},
+  "Norway": {"statute_years": 3, "currency": "EUR"},
+  "Switzerland": {"statute_years": 2, "currency": "EUR"}
+}

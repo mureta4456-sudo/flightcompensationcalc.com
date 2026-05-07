@@ -1,0 +1,6 @@
+{
+  "name": "FlightComp - EU/UK Flight Delay Calculator",
+  "description": "Professional flight delay compensation calculator for EC 261/2004 and UK261 rights. Check your eligibility and claim up to €600 or £520.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
