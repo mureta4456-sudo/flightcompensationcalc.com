@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Plane, Calculator, Info, ShieldCheck, HelpCircle, Menu, X, Languages } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Language, translations } from '../translations';
@@ -7,18 +7,23 @@ import { Language, translations } from '../translations';
 interface LayoutProps {
   children: React.ReactNode;
   lang: Language;
-  setLang: (lang: Language) => void;
 }
 
-export default function Layout({ children, lang, setLang }: LayoutProps) {
+export default function Layout({ children, lang }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const t = translations[lang];
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Build URL prefix for current language. English has no prefix.
+  const langPrefix = lang === 'en' ? '' : `/${lang}`;
+  const homeHref = langPrefix || '/';
 
   const navItems = [
-    { name: t.calculator, href: '/', icon: Calculator },
-    { name: t.howItWorks, href: '/how-it-works', icon: HelpCircle },
-    { name: t.rights, href: '/your-rights', icon: ShieldCheck },
-    { name: t.faq, href: '/faq', icon: Info },
+    { name: t.calculator, href: homeHref, icon: Calculator },
+    { name: t.howItWorks, href: `${langPrefix}/how-it-works`, icon: HelpCircle },
+    { name: t.rights, href: `${langPrefix}/your-rights`, icon: ShieldCheck },
+    { name: t.faq, href: `${langPrefix}/faq`, icon: Info },
   ];
 
   const languages: { code: Language; label: string }[] = [
@@ -29,12 +34,26 @@ export default function Layout({ children, lang, setLang }: LayoutProps) {
     { code: 'es', label: 'Español' },
   ];
 
+  // Switch language: navigate to the same page in the new language.
+  function handleLangChange(newLang: Language) {
+    // Strip the existing language prefix from the path, if any.
+    const pathWithoutLang = location.pathname.replace(/^\/(en|lv|de|fr|es)(?=\/|$)/, '');
+    const cleanPath = pathWithoutLang || '/';
+
+    if (newLang === 'en') {
+      navigate(cleanPath);
+    } else {
+      const newPath = cleanPath === '/' ? `/${newLang}` : `/${newLang}${cleanPath}`;
+      navigate(newPath);
+    }
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-brand-navy text-white sticky top-0 z-50 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
-            <Link to="/" className="flex items-center space-x-2">
+            <Link to={homeHref} className="flex items-center space-x-2">
               <div className="bg-brand-gold p-2 rounded-lg">
                 <Plane className="h-6 w-6 text-brand-navy" strokeWidth={3} />
               </div>
@@ -58,7 +77,7 @@ export default function Layout({ children, lang, setLang }: LayoutProps) {
                 <Languages className="h-4 w-4 text-slate-400" />
                 <select
                   value={lang}
-                  onChange={(e) => setLang(e.target.value as Language)}
+                  onChange={(e) => handleLangChange(e.target.value as Language)}
                   className="bg-transparent text-sm font-medium focus:outline-none text-slate-300 hover:text-white cursor-pointer"
                 >
                   {languages.map(l => <option key={l.code} value={l.code} className="bg-brand-navy">{l.label}</option>)}
@@ -69,7 +88,7 @@ export default function Layout({ children, lang, setLang }: LayoutProps) {
             <div className="md:hidden flex items-center space-x-4">
               <select
                 value={lang}
-                onChange={(e) => setLang(e.target.value as Language)}
+                onChange={(e) => handleLangChange(e.target.value as Language)}
                 className="bg-transparent text-sm font-medium focus:outline-none text-slate-300"
               >
                 {languages.map(l => <option key={l.code} value={l.code} className="bg-brand-navy">{l.code.toUpperCase()}</option>)}
@@ -127,8 +146,8 @@ export default function Layout({ children, lang, setLang }: LayoutProps) {
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">Legal</h3>
               <ul className="space-y-2 text-sm text-slate-400">
-                <li><Link to="/privacy" className="hover:text-brand-gold">Privacy Policy</Link></li>
-                <li><Link to="/terms" className="hover:text-brand-gold">Terms of Service</Link></li>
+                <li><Link to={`${langPrefix}/privacy`} className="hover:text-brand-gold">Privacy Policy</Link></li>
+                <li><Link to={`${langPrefix}/terms`} className="hover:text-brand-gold">Terms of Service</Link></li>
               </ul>
             </div>
             <div>
