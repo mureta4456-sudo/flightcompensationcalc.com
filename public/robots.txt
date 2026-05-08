@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+ 
+# Disallow bot-only / API endpoints (none yet, but placeholder)
+# Disallow: /api/
+ 
+Sitemap: https://flightcompensationcalc.com/sitemap.xml
+ 
