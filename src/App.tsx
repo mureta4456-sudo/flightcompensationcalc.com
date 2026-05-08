@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import HowItWorks from './pages/HowItWorks';
@@ -24,9 +25,9 @@ export default function App() {
           <Route path="/terms" element={<TermsOfService lang={lang} />} />
         </Routes>
       </Layout>
+      <Analytics />
     </BrowserRouter>
   );
 }
  
-
 
