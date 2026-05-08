@@ -68,7 +68,7 @@ You don't lose your rights immediately. You can usually claim for past flights:
 4. Use Small Claims Court or a claim management service as a last step
 
 You have these rights regardless of nationality, ticket price, or whether you booked with miles. Use the calculator on the home page to estimate what you may be owed.
-\`;
+`;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-20">
