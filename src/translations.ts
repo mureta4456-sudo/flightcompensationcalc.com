@@ -25,7 +25,8 @@ export const translations = {
     howItWorks: "How it Works",
     rights: "Your Rights",
     faq: "FAQ",
-    calculator: "Calculator"
+    calculator: "Calculator",
+    guides: "Guides"
   },
   lv: {
     heroTitlePart1: "Vai jūsu lidojums kavējās?",
@@ -50,7 +51,8 @@ export const translations = {
     howItWorks: "Kā tas strādā",
     rights: "Jūsu tiesības",
     faq: "BUJ",
-    calculator: "Kalkulators"
+    calculator: "Kalkulators",
+    guides: "Raksti"
   },
   de: {
     heroTitlePart1: "War Ihr Flug verspätet?",
@@ -75,7 +77,8 @@ export const translations = {
     howItWorks: "Wie es funktioniert",
     rights: "Ihre Rechte",
     faq: "FAQ",
-    calculator: "Rechner"
+    calculator: "Rechner",
+    guides: "Ratgeber"
   },
   fr: {
     heroTitlePart1: "Votre vol a été retardé ?",
@@ -100,7 +103,8 @@ export const translations = {
     howItWorks: "Comment ça marche",
     rights: "Vos droits",
     faq: "FAQ",
-    calculator: "Calculateur"
+    calculator: "Calculateur",
+    guides: "Guides"
   },
   es: {
     heroTitlePart1: "¿Su vuelo se retrasó?",
@@ -125,6 +129,7 @@ export const translations = {
     howItWorks: "Cómo funciona",
     rights: "Sus derechos",
     faq: "Preguntas frecuentes",
-    calculator: "Calculadora"
+    calculator: "Calculadora",
+    guides: "Guías"
   }
 };
