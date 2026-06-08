@@ -8,6 +8,7 @@ import YourRights from './pages/YourRights';
 import FAQ from './pages/FAQ';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import { BlogList, BlogPost } from './pages/Blog';
 import { Language } from './translations';
 
 const VALID_LANGS: Language[] = ['en', 'lv', 'de', 'fr', 'es'];
@@ -16,11 +17,8 @@ function getLang(lang: string | undefined): Language {
   return lang && VALID_LANGS.includes(lang as Language) ? (lang as Language) : 'en';
 }
 
-// Layout wrapper that reads current language from URL and validates it.
-// Used as the layout route for all pages.
 function LayoutOutlet() {
   const { lang: urlLang } = useParams<{ lang?: string }>();
-  // If URL has a lang prefix that isn't a valid language, redirect to English home.
   if (urlLang && !VALID_LANGS.includes(urlLang as Language)) {
     return <Navigate to="/" replace />;
   }
@@ -32,7 +30,6 @@ function LayoutOutlet() {
   );
 }
 
-// Generic page wrapper that reads lang from URL and passes as prop.
 function PageWithLang({ Component }: { Component: React.ComponentType<{ lang: Language }> }) {
   const { lang } = useParams<{ lang?: string }>();
   return <Component lang={getLang(lang)} />;
@@ -48,6 +45,8 @@ export default function App() {
           <Route path="/how-it-works" element={<PageWithLang Component={HowItWorks} />} />
           <Route path="/your-rights" element={<PageWithLang Component={YourRights} />} />
           <Route path="/faq" element={<PageWithLang Component={FAQ} />} />
+          <Route path="/guides" element={<PageWithLang Component={BlogList} />} />
+          <Route path="/guides/:slug" element={<PageWithLang Component={BlogPost} />} />
           <Route path="/privacy" element={<PageWithLang Component={PrivacyPolicy} />} />
           <Route path="/terms" element={<PageWithLang Component={TermsOfService} />} />
         </Route>
@@ -58,6 +57,8 @@ export default function App() {
           <Route path="how-it-works" element={<PageWithLang Component={HowItWorks} />} />
           <Route path="your-rights" element={<PageWithLang Component={YourRights} />} />
           <Route path="faq" element={<PageWithLang Component={FAQ} />} />
+          <Route path="guides" element={<PageWithLang Component={BlogList} />} />
+          <Route path="guides/:slug" element={<PageWithLang Component={BlogPost} />} />
           <Route path="privacy" element={<PageWithLang Component={PrivacyPolicy} />} />
           <Route path="terms" element={<PageWithLang Component={TermsOfService} />} />
         </Route>
