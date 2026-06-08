@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Plane, Calculator, Info, ShieldCheck, HelpCircle, Menu, X, Languages } from 'lucide-react';
+import { Plane, Calculator, Info, ShieldCheck, HelpCircle, BookOpen, Menu, X, Languages } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Language, translations } from '../translations';
 
@@ -24,6 +24,7 @@ export default function Layout({ children, lang }: LayoutProps) {
     { name: t.howItWorks, href: `${langPrefix}/how-it-works`, icon: HelpCircle },
     { name: t.rights, href: `${langPrefix}/your-rights`, icon: ShieldCheck },
     { name: t.faq, href: `${langPrefix}/faq`, icon: Info },
+    { name: t.guides, href: `${langPrefix}/guides`, icon: BookOpen },
   ];
 
   const languages: { code: Language; label: string }[] = [
